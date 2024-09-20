@@ -1,24 +1,16 @@
+import socket as s  # Importa il modulo socket e assegna l'alias 's'
 
-import socket as s
+# Crea un socket client UDP
+udp_client_socket = s.socket(s.AF_INET, s.SOCK_DGRAM)
 
-udp_client_socket = s.socket(s.AF_INET, s.SOCK_STREAM)
+# Definisce il messaggio da inviare al server
+message = b'Ciao server!'  # Il messaggio è una stringa di byte (b'...')
 
-message = "ciao".encode('utf8')
-
+# Definisce l'indirizzo del server e la porta
 server_address = ("192.168.65.103", 6980)
-BUFFER_SIZE = 4092 #uanti bit posso inviare o ricevere
 
+# Definisce la dimensione del buffer per l'invio e la ricezione dei dati
+BUFFER_SIZE = 4092  # La dimensione del buffer è di 4092 byte
+
+# Invia il messaggio al server utilizzando il metodo sendto
 udp_client_socket.sendto(message, server_address)
-
-# import socket as s
-
-# client = s.socket(s.AF_INET, s.SOCK_STREAM)
-
-# host = '192.168.65.103'
-# port = 22222
-
-# client.connect((host, port))
-
-# client.send("ciao dall'host n".encode('utf-8'))
-# print(client.recv(1024).decode('utf-8'))
-# client.close()
