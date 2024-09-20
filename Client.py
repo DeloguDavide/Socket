@@ -14,3 +14,9 @@ BUFFER_SIZE = 4092  # La dimensione del buffer è di 4092 byte
 
 # Invia il messaggio al server utilizzando il metodo sendto
 udp_client_socket.sendto(message, server_address)
+
+# Metto la socket in ascolto e attendo la ricezione di dati
+data, server_address = udp_client_socket.recvfrom(BUFFER_SIZE)
+
+#Stampo un messaggio che indica che i dati sono stati ricevuti dal seerver
+print(f"Messaggio ricevuto da server: {data.decode()} da {server_address}")

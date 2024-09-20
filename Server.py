@@ -16,10 +16,17 @@ udp_server_socket.bind(server_address)
 # La socket è ora in ascolto sull'indirizzo IP e la porta specificati
 
 # Metto la socket in ascolto e attendo la ricezione di dati
-data, address = udp_server_socket.recvfrom(BUFFER_SIZE)
+data, client_address = udp_server_socket.recvfrom(BUFFER_SIZE)
 # recvfrom() riceve i dati e restituisce due valori: data (i dati ricevuti) e address (l'indirizzo IP e la porta del client che ha inviato i dati)
 
 # Stampo un messaggio che indica che i dati sono stati ricevuti
-print(f"Messaggio ricevuto: {data.decode()} da {address}")
+print(f"Messaggio ricevuto: {data.decode()} da {client_address}")
 # decode() converte i dati ricevuti (che sono in formato binario) in una stringa di testo leggibile
-# Nota: ho aggiunto le parentesi alla chiamata di decode() per renderla corretta
+
+#Invio messaggio al client
+udp_server_socket.sendto("Benvenuto nel server!".encode("utf-8"), client_address)
+
+#Chiudo
+udp_server_socket.close()
+
+
